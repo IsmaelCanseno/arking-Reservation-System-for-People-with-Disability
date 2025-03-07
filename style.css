@@ -1,0 +1,173 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0; /* Light gray background */
+    margin: 0;
+}
+
+.login-container {
+    width: 300px; /* Adjust as needed */
+    padding: 20px;
+}
+
+.login-box {
+    border: 1px solid #ddd;
+    background-color: white;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.login-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-box label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+    width: calc(100% - 12px);
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 10px;
+    background-color: #535f80; /* Light goldenrod yellow */
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.login-box .register-button {
+    background-color: transparent; /* Transparent background for register */
+    border: 1px solid #535f80; /* Border color same as login button */
+    color: rgb(0, 0, 0); /* Text color for register button */
+}
+
+.login-box .forgot-password {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.login-box .terms {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.8em;
+    color: #888;
+}
+
+.register-container {
+    width: 300px; /* Adjust as needed */
+    padding: 20px;
+}
+
+.register-box {
+    border: 1px solid #ddd;
+    background-color: white;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.register-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.register-box label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.register-box input[type="text"],
+.register-box input[type="email"],
+.register-box input[type="tel"],
+.register-box input[type="password"] {
+    width: calc(100% - 12px);
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+
+.register-box button {
+    width: 100%;
+    padding: 10px;
+    background-color: #bbdefb; 
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.register-box .login-link {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.register-box .help-center {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.profile-container {
+    width: 300px; /* Adjust as needed */
+    border: 1px solid #ddd;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(6, 6, 6, 0.1);
+}
+
+.header {
+    background-color: #bbdefb; /* Light goldenrod yellow */
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.close-icon {
+    cursor: pointer;
+}
+
+.content {
+    padding: 20px;
+}
+
+.guest-name {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    background-color: #ddd; /* Placeholder gray circle */
+    border-radius: 50%;
+    margin: 0 auto 20px;
+}
+
+.menu {
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.menu-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
