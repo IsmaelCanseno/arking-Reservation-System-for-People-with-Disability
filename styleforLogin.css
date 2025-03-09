@@ -4,12 +4,12 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f0f0; /* Light gray background */
+    background-color: #f0f0f0;
     margin: 0;
 }
 
 .login-container {
-    width: 300px; /* Adjust as needed */
+    width: 300px;
     padding: 20px;
 }
 
@@ -41,16 +41,16 @@ body {
 .login-box button {
     width: 100%;
     padding: 10px;
-    background-color: #f0e68c; /* Light goldenrod yellow */
+    background-color: #535f80;
     border: none;
     cursor: pointer;
     margin-top: 10px;
 }
 
 .login-box .register-button {
-    background-color: transparent; /* Transparent background for register */
-    border: 1px solid #f0e68c; /* Border color same as login button */
-    color: black; /* Text color for register button */
+    background-color: transparent;
+    border: 1px solid #535f80;
+    color: rgb(0, 0, 0);
 }
 
 .login-box .forgot-password {

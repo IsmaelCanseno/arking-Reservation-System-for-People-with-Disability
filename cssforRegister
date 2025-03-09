@@ -1,0 +1,60 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+}
+
+.register-container {
+    width: 300px;
+    padding: 20px;
+}
+
+.register-box {
+    border: 1px solid #ddd;
+    background-color: white;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.register-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.register-box label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.register-box input[type="text"],
+.register-box input[type="email"],
+.register-box input[type="tel"],
+.register-box input[type="password"] {
+    width: calc(100% - 12px);
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+
+.register-box button {
+    width: 100%;
+    padding: 10px;
+    background-color: #bbdefb;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.register-box .login-link {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.register-box .help-center {
+    text-align: center;
+    margin-top: 20px;
+}
