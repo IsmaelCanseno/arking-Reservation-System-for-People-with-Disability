@@ -1,50 +1,101 @@
+/* General Styles (Apply to all pages) */
 body {
     font-family: sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f0f0f0;
+    display: flex; /* Added for centering */
+    flex-direction: column; /* Added for centering */
+    justify-content: center; /* Added for centering */
+    align-items: center; /* Added for centering */
+    min-height: 100vh; /* Added for centering */
     margin: 0;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f0f0f0; /* Default background */
 }
 
-.login-container {
+h1, h2, h3 {
+    color: #014d9d; /* Consistent heading color */
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+a {
+    color: #0666cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+strong {
+    font-weight: bold;
+}
+
+/* Login/Register Styles */
+.login-container, .register-container {
     width: 300px;
     padding: 20px;
+    /* Removed display: flex, justify-content, align-items, min-height from here */
+    /* They are now on the body, so they center all containers */
 }
 
-.login-box {
+.login-box, .register-box {
     border: 1px solid #ddd;
     background-color: white;
     padding: 20px;
     box-sizing: border-box;
+    width: 100%; /* Ensures box fills container */
 }
 
-.login-box h2 {
+.login-box h2, .register-box h2 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.login-box label {
+.login-box label, .register-box label {
     display: block;
     margin-bottom: 5px;
 }
 
 .login-box input[type="text"],
-.login-box input[type="password"] {
+.login-box input[type="password"],
+.register-box input[type="text"],
+.register-box input[type="email"],
+.register-box input[type="tel"],
+.register-box input[type="password"] {
     width: calc(100% - 12px);
     padding: 5px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
 }
 
-.login-box button {
+.login-box button, .register-box button {
     width: 100%;
     padding: 10px;
-    background-color: #535f80;
     border: none;
     cursor: pointer;
     margin-top: 10px;
+}
+
+.login-box button {
+    background-color: #535f80;
+    color: white; /* Added text color */
+}
+
+.register-box button {
+    background-color: #bbdefb;
 }
 
 .login-box .register-button {
@@ -53,7 +104,7 @@ body {
     color: rgb(0, 0, 0);
 }
 
-.login-box .forgot-password {
+.login-box .forgot-password, .register-box .login-link, .register-box .help-center {
     text-align: center;
     margin-top: 10px;
 }
@@ -65,62 +116,7 @@ body {
     color: #888;
 }
 
-
-
-
-.register-container {
-    width: 300px;
-    padding: 20px;
-}
-
-.register-box {
-    border: 1px solid #ddd;
-    background-color: white;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.register-box h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.register-box label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.register-box input[type="text"],
-.register-box input[type="email"],
-.register-box input[type="tel"],
-.register-box input[type="password"] {
-    width: calc(100% - 12px);
-    padding: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-}
-
-.register-box button {
-    width: 100%;
-    padding: 10px;
-    background-color: #bbdefb;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.register-box .login-link {
-    text-align: center;
-    margin-top: 10px;
-}
-
-.register-box .help-center {
-    text-align: center;
-    margin-top: 20px;
-}
-
-
-
+/* Profile Styles */
 .profile-container {
     width: 300px;
     border: 1px solid #ddd;
@@ -157,6 +153,13 @@ body {
     background-color: #ddd;
     border-radius: 50%;
     margin: 0 auto 20px;
+    overflow: hidden; /* Added overflow hidden */
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .menu {
@@ -177,88 +180,8 @@ body {
     margin-right: 10px;
 }
 
-
-
-
+/* Container Styles (Image Upload) */
 .container {
-    width: 350px; /* Adjust the width as needed */
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* Prevents content from overflowing the rounded corners */
-}
-
-.header {
-    background-color: #bbdefb; /* light blue header */
-    color: rgb(255, 255, 255);
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header h2 {
-    margin: 0;
-    font-size: 1.2em;
-}
-
-.close-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5em;
-    cursor: pointer;
-}
-
-.content {
-    padding: 20px;
-}
-
-.section {
-    margin-bottom: 20px;
-}
-
-.section h3 {
-    margin-top: 0;
-    font-size: 1.1em;
-    margin-bottom: 10px;
-}
-
-.image-placeholder {
-    width: 100%;
-    height: 150px; /* Adjust the height as needed */
-    background-color: #ddd;
-    border-radius: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 5px;
-    /* The following properties ensure the image scales proportionally 
-       and stays centered within the placeholder */
-    background-size: contain; 
-    background-position: center;
-    background-repeat: no-repeat; 
-    cursor: pointer; /* Add cursor style to indicate it's clickable */
-}
-
-.image-placeholder p {
-    color: #888;
-}
-
-.section p {
-    text-align: center;
-    font-size: 0.9em;
-    color: #555;
-}
-
-/* Hide the actual file input */
-input[type="file"] {
-    display: none;
-}
-
-
-
-.settings-container {
     width: 350px;
     background-color: white;
     border-radius: 8px;
@@ -266,7 +189,7 @@ input[type="file"] {
     overflow: hidden;
 }
 
-.header {
+.container .header { /* Specific header for container */
     background-color: #bbdefb;
     color: white;
     padding: 15px;
@@ -275,12 +198,72 @@ input[type="file"] {
     align-items: center;
 }
 
-.header h2 {
+.container .header h2 {
     margin: 0;
     font-size: 1.2em;
 }
 
-.close-btn {
+.container .close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.container .content {
+    padding: 20px;
+}
+
+.container .section {
+    margin-bottom: 20px;
+}
+
+.container .section h3 {
+    margin-top: 0;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.image-placeholder {
+    width: 100%;
+    height: 150px;
+    background-color: #ddd;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.image-placeholder p {
+    color: #888;
+}
+
+.container .section p {
+    text-align: center;
+    font-size: 0.9em;
+    color: #555;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+/* Settings Styles */
+.settings-container {
+    width: 350px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.settings-container .close-btn {
     background: none;
     border: none;
     color: white;
@@ -294,7 +277,7 @@ input[type="file"] {
     font-weight: bold;
 }
 
-.section {
+.settings-container .section {
     padding: 10px 15px;
 }
 
@@ -310,85 +293,294 @@ input[type="file"] {
     margin-right: 10px;
 }
 
-
-
+/* Account Styles */
 .account-container {
     width: 350px;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    position: relative;
+    padding: 20px;
 }
 
-.header {
-    background-color: #bbdefb;
-    color: white;
-    padding: 15px;
+.account-container .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
 }
 
-.header h2 {
+.account-container .header h2 {
     margin: 0;
     font-size: 1.2em;
 }
 
-.close-btn {
+.account-container .close-btn {
     background: none;
     border: none;
-    color: white;
+    color: #888;
     font-size: 1.5em;
     cursor: pointer;
+    padding: 5px;
 }
 
-.profile-picture {
+.account-container .profile-picture {
     width: 100px;
     height: 100px;
     background-color: #ddd;
     border-radius: 50%;
     margin: 20px auto;
+    overflow: hidden;
 }
 
-.section {
+.account-container .profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.account-container .section {
     padding: 15px;
     border-top: 1px solid #eee;
+    margin-bottom: 10px;
 }
 
-.section-title {
+.account-container .section-title {
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.item {
+.account-container .item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 8px 0;
 }
 
-.label {
+.account-container .label {
     color: #555;
 }
 
-.value {
+.account-container .value {
     font-weight: 500;
 }
 
-.edit {
-    color: #007bff;
+.account-container .edit,
+.account-container .delete-account {
     cursor: pointer;
+    transition: color 0.3s ease;
 }
 
-.delete-warning {
+.account-container .edit {
+    color: #007bff;
+}
+
+.account-container .edit:hover {
+    color: #0056b3;
+}
+
+.account-container .delete-warning {
     color: #888;
     font-size: 0.9em;
     margin-top: 10px;
 }
 
-.delete-account {
+.account-container .delete-account {
     color: red;
     font-weight: 500;
+}
+
+.account-container .delete-account:hover {
+    color: darkred;
+}
+
+/* Map Styles */
+#map {
+    height: 400px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.leaflet-popup-content-wrapper {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.leaflet-popup-content {
+    margin: 0;
+    font-size: 14px;
+}
+
+.leaflet-popup-tip-container {
+    width: 20px;
+    height: 11px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.leaflet-popup-tip {
+    width: 17px;
+    height: 17px;
+    padding: 1px;
+    margin: -10px auto 0;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    background-color: white;
+    border: 1px solid #ccc;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 18px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 5px;
     cursor: pointer;
-    margin-top: 10px;
+}
+
+.leaflet-control-zoom-in:hover,
+.leaflet-control-zoom-out:hover {
+    background-color: #f0f0f0;
+}
+
+/* Privacy Styles */
+.privacy-container .section {
+    margin-bottom: 30px;
+}
+
+.privacy-container h2,
+.privacy-container h3 {
+    color: #014d9d;
+    margin-bottom: 10px;
+}
+
+.privacy-container ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.privacy-container li {
+    margin-bottom: 8px;
+}
+
+.privacy-container .policy-link {
+    color: #0666cc;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.privacy-container .policy-link:hover {
+    color: #0056b3;
+}
+
+.privacy-container p {
+    margin-bottom: 15px;
+}
+
+.privacy-container strong {
+    font-weight: bold;
+}
+
+/* About Styles */
+.about-container {
+    max-width: 800px;
+    margin: 20px auto; /* Added margin for centering */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.about-container h1,
+.about-container h2 {
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.about-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.about-container section {
+    margin-bottom: 30px;
+}
+
+.about-container ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.about-container li {
+    margin-bottom: 8px;
+}
+
+.about-container a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.about-container a:hover {
+    text-decoration: underline;
+}
+
+.about-container .description p,
+.about-container .company p,
+.about-container .legal p,
+.about-container .acknowledgments p {
+    margin-bottom: 15px;
+}
+
+/* notification.css */
+
+#notificationContainer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+#notification {
+    background-color: #e0f7fa;
+    border: 1px solid #b2ebf2;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 250px;
+    transition: opacity 0.3s ease;
+}
+
+#notification.hidden {
+    opacity: 0;
+    pointer-events: none; /* Prevents clicks when hidden */
+}
+
+#notificationMessage {
+    flex-grow: 1;
+}
+
+#closeNotification {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-left: 10px;
+    color: #333;
 }

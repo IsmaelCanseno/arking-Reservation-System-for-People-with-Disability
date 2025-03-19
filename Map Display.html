@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Map Display</title>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css" />
+
+</head>
+<body>
+    <div id="map"></div>
+
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([51.505, -0.09], 13); // London as default
+
+        // Add a tile layer (OpenStreetMap)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Add a marker (optional)
+        var marker = L.marker([51.5, -0.1]).addTo(map);
+        marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+
+        //Function to update marker location
+        function updateMarker(lat, lng, popupText){
+            if(marker){
+                map.removeLayer(marker);
+            }
+            marker = L.marker([lat, lng]).addTo(map);
+            if(popupText){
+                marker.bindPopup(popupText).openPopup();
+            }
+            map.setView([lat, lng], 13);
+        }
+
+        // Example: Update the marker location (e.g., from user input or geolocation)
+        //updateMarker(40.7128, -74.0060, "New York City"); // Example: New York
+        // Add event listener to get the current location.
+        map.on('click', function(e) {
+            updateMarker(e.latlng.lat, e.latlng.lng, "Clicked Location");
+        });
+
+        //Example of using geolocation
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                updateMarker(position.coords.latitude, position.coords.longitude, "Your Location");
+            }, function(error) {
+                console.error("Geolocation error:", error);
+            });
+        } else {
+            console.error("Geolocation is not available in this browser.");
+        }
+
+    </script>
+</body>
+</html>
