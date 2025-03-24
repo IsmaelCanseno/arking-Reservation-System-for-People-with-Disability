@@ -287,10 +287,12 @@ input[type="file"] {
     padding: 10px 0;
 }
 
-.icon {
+.icons {
     width: 24px;
     height: 24px;
     margin-right: 10px;
+    color: #bbdefb;
+    
 }
 
 /* Account Styles */
