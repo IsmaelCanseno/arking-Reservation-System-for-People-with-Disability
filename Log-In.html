@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>Log In</h2>
+            <form id="login-form">
+                <label for="username">Username / Name</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+
+                <div class="forgot-password">
+                    <a href="#">Forgot password? CLICK HERE</a>
+                </div>
+
+                <button type="submit">LOGIN</button>
+            </form>
+
+            <button id="register-button" class="register-button">REGISTER</button>
+
+            <div class="terms">
+                By continuing you agree to PSPD's <br>
+                Terms of Service and Privacy Policy
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("login-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevents the page from refreshing
+            window.location.href = "Profile.html"; // Redirects to profile after login
+        });
+
+        document.getElementById("register-button").addEventListener("click", function() {
+            window.location.href = "Register.html"; // Redirects to register page
+        });
+    </script>
+</body>
+</html>
