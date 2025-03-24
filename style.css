@@ -115,6 +115,22 @@ strong {
     font-size: 0.8em;
     color: #888;
 }
+.sign-in-option{
+    text-align: center;
+    font-size: 14px;
+}
+
+.sign-in-option a{
+    color: black;
+    transition: 30ms;
+}
+
+.sign-in-option a:hover{
+    color: #014d9d;
+    text-decoration: none;
+    
+}
+
 
 /* Profile Styles */
 .profile-container {
