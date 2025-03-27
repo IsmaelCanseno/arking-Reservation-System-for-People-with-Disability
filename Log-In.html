@@ -4,43 +4,191 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --radius-md: 0.5rem;
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: var(--bg-light);
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #8db0e8 100%);
+        }
+
+        .login-outer-container {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .login-container {
+            width: 100%;
+        }
+
+        .login-box {
+            background-color: var(--bg-white);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .login-box h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+            font-weight: 600;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        label {
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        input {
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin: -0.5rem 0 0.5rem 0;
+        }
+
+        .forgot-password a {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .forgot-password a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        button {
+            padding: 0.75rem;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        button[type="submit"] {
+            background-color: var(--primary-color);
+            color: white;
+            margin-top: 0.5rem;
+        }
+
+        button[type="submit"]:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .register-button {
+            width: 100%;
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            margin-top: 1rem;
+        }
+
+        .register-button:hover {
+            background-color: rgba(37, 99, 235, 0.1);
+        }
+
+        .terms {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-box">
-            <h2>Log In</h2>
-            <form id="login-form">
-                <label for="username">Username / Name</label>
-                <input type="text" id="username" name="username" required>
+    <div class="login-outer-container">
+        <div class="login-container">
+            <div class="login-box">
+                <h2>Log In</h2>
+                <form id="login-form">
+                    <label for="username">Username / Name</label>
+                    <input type="text" id="username" name="username" required>
 
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
 
-                <div class="forgot-password">
-                    <a href="#">Forgot password? CLICK HERE</a>
-                </div>
+                    <div class="forgot-password">
+                        <a href="#">Forgot password?</a>
+                    </div>
 
-                <button type="submit">LOGIN</button>
-            </form>
+                    <div class="button-container">
+                        <button type="submit">LOGIN</button>
+                        <button id="register-button" class="register-button">REGISTER</button>
+                    </div>
 
-            <button id="register-button" class="register-button">REGISTER</button>
-
-            <div class="terms">
-                By continuing you agree to PSPD's <br>
-                Terms of Service and Privacy Policy
+                    <div class="terms">
+                        By continuing you agree to PSPD's <br>
+                        Terms of Service and Privacy Policy
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
     <script>
         document.getElementById("login-form").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevents the page from refreshing
-            window.location.href = "Profile.html"; // Redirects to profile after login
+            event.preventDefault();
+            window.location.href = "Profile.html";
         });
 
         document.getElementById("register-button").addEventListener("click", function() {
-            window.location.href = "Register.html"; // Redirects to register page
+            window.location.href = "Register.html";
         });
     </script>
 </body>

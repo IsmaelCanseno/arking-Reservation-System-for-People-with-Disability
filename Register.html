@@ -3,47 +3,288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="style.css"> 
+    <title>Create Account</title>
+    <style>
+        :root {
+            --primary: #3a86ff;
+            --primary-hover: #2667cc;
+            --text: #2b2d42;
+            --light-text: #8d99ae;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --border: #e9ecef;
+            --border-focus: #b8d0ff;
+            --radius: 10px;
+            --shadow: 0 8px 24px rgba(0,0,0,0.08);
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #dfe7f5 100%);
+            padding: 20px;
+        }
+
+        .register-card {
+            width: 100%;
+            max-width: 440px;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(12px);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255,255,255,0.4);
+            overflow: hidden;
+            transform: translateY(-20px);
+            opacity: 0;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .card-content {
+            padding: 40px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .logo svg {
+            width: 48px;
+            height: 48px;
+            fill: var(--primary);
+        }
+
+        h1 {
+            color: var(--text);
+            text-align: center;
+            margin-bottom: 28px;
+            font-size: 26px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 15px;
+            transition: var(--transition);
+            background-color: #fcfcfc;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.15);
+            background-color: white;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 38px;
+            cursor: pointer;
+            color: var(--light-text);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: var(--transition);
+            box-shadow: 0 2px 6px rgba(58, 134, 255, 0.3);
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(58, 134, 255, 0.3);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 28px 0;
+            color: var(--light-text);
+            font-size: 13px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .divider::before {
+            margin-right: 12px;
+        }
+
+        .divider::after {
+            margin-left: 12px;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        .login-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .help-center {
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .help-center a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+
+        .help-center a:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 480px) {
+            .card-content {
+                padding: 32px 24px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="register-container">
-        <div class="register-box">
-            <h2>Register</h2>
-            <form id="register-form">
-                <label for="username">Username / Name</label>
-                <input type="text" id="username" name="username" placeholder="" required>
-
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone">
-
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-
-                <form id="register-form" action="Profile.html">
-                    <button type="submit">SIGN UP</button>
-                </form>
-                
-                <div class="sign-in-option">
-                    <br>
-                    <hr>
-                    <br>
-                    <a href="Log In.html">Already have an account?</a>
-                    
+    <div class="register-card">
+        <div class="card-content">
+            <div class="logo">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                </svg>
+            </div>
+            
+            <h1>Create Your Account</h1>
+            
+            <form id="register-form" action="Profile.html">
+                <div class="form-group">
+                    <label for="username">Full Name</label>
+                    <input type="text" id="username" name="username" required placeholder="John Doe">
                 </div>
                 
-
-
-                <br>
-               
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="your@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="••••••••">
+                    <span class="password-toggle" id="togglePassword">👁️</span>
+                </div>
+                
+                <button type="submit" class="submit-btn">Create Account</button>
+            </form>
+            
+            <div class="divider">or</div>
+            
+            <div class="login-link">
+                <a href="Log In.html">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                        <polyline points="10 17 15 12 10 7"></polyline>
+                        <line x1="15" y1="12" x2="3" y2="12"></line>
+                    </svg>
+                    Already have an account? Sign In
+                </a>
+            </div>
+            
             <div class="help-center">
-                <a href="#">(?) Help Center</a>
+                <a href="#">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                        <line x1="12" y1="17" x2="12" y2="17"></line>
+                    </svg>
+                    Help Center
+                </a>
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        // Password toggle functionality
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+        
+        togglePassword.addEventListener('click', function() {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.textContent = type === 'password' ? '👁️' : '🔒';
+        });
+
+        // Form submission
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add form validation here if needed
+            window.location.href = this.getAttribute('action');
+        });
+    </script>
 </body>
 </html>
