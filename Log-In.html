@@ -39,6 +39,19 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
             width: 100%;
             max-width: 450px;
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .login-container {
@@ -184,12 +197,36 @@
     <script>
         document.getElementById("login-form").addEventListener("submit", function(event) {
             event.preventDefault();
-            window.location.href = "Profile.html";
+            // Add fade out animation before redirect
+            document.querySelector('.login-outer-container').style.animation = 'fadeOut 0.5s ease-out forwards';
+            setTimeout(() => {
+                window.location.href = "Profile.html";
+            }, 500);
         });
 
         document.getElementById("register-button").addEventListener("click", function() {
-            window.location.href = "Register.html";
+            // Add fade out animation before redirect
+            document.querySelector('.login-outer-container').style.animation = 'fadeOut 0.5s ease-out forwards';
+            setTimeout(() => {
+                window.location.href = "Register.html";
+            }, 500);
         });
+
+        // Add fade out animation
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes fadeOut {
+                from {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                to {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
-</html>
+</html>b
