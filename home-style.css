@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: left;
+}
+
+.search-box{
+    height: 30px;
+    display: flex;
+    cursor: pointer;
+    padding: 10px 20px;
+    background: white;
+    border-radius: 30px;
+    align-items: center;
+    border:#2563eb;
+
+}
+
+.search-box:hover{
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.search-box:hover input{
+    width: 300px ;
+}
+
+.search-box input{
+    width: 0;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    transition: 0.8s;
+    
+}
+
+.search-box a .bx{
+    color: #2563eb;
+    font-size: 30px;
+}
