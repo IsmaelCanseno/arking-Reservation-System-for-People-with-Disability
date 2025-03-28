@@ -1,44 +1,67 @@
-*{
+/*  Google Font: Poppins import  */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+:root {
+    --primary-color: #2563eb;  /* Modern blue */
+    --primary-dark: #1d4ed8;
+    --primary-light: #3b82f6;
+    --secondary-color: #4b5563;  /* Neutral gray */
+    --accent-color: #10b981;  /* Emerald green */
+    --danger-color: #ef4444;  /* Red for errors/destructive actions */
+    --warning-color: #f59e0b; /* Amber for warnings */
+    --success-color: #10b981; /* Green for success */
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --bg-light: #f9fafb;
+    --bg-white: #ffffff;
+    --border-color: #e5e7eb;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+
+    /*----Transitions----*/
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+  }
+
+  *{
+    font-family: "Poppins", sans-serif;
     margin: 0;
     padding: 0;
-}
+    box-sizing: border-box;
+  }
 
-body{
+ 
+
+  body{
     height: 100vh;
-    display: flex;
-    justify-content: left;
-}
+    background: var(--border-color)
+  }
 
-.search-box{
-    height: 30px;
+   /* Sidebar in Home */
+
+  .home-sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding: 10px 14px;
+    background: var(--bg-light);
+
+  }
+
+  .home-sidebar .image-text img{
+    width: 60px;
+  }
+
+  .home-sidebar header .image-text img{
     display: flex;
-    cursor: pointer;
-    padding: 10px 20px;
-    background: white;
-    border-radius: 30px;
     align-items: center;
-    border:#2563eb;
 
-}
-
-.search-box:hover{
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-}
-
-.search-box:hover input{
-    width: 300px ;
-}
-
-.search-box input{
-    width: 0;
-    outline: none;
-    border: none;
-    font-weight: 500;
-    transition: 0.8s;
-    
-}
-
-.search-box a .bx{
-    color: #2563eb;
-    font-size: 30px;
-}
+  }
