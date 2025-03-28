@@ -3,85 +3,564 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy & Security</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Privacy & Security | AccessPark</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e37c4;
+            --primary-blue: #2759c5;
+            --primary-dark: #013193;
+            --primary-light: #e0f0ff;
+            --primary-light: #4895ef;
+            --accent: #3771c9;
+            --light-blue: #e0f0ff;
+            --border-color: #bfdbfe;
+            --dark: #1b263b;
+            --light: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #2b2d42;
+            --text-light: #8d99ae;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes ripple {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(4); opacity: 0; }
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--light);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+            padding-top: 2rem;
+        }
+        
+        .header-bg {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            right: 0;
+            height: 300px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            background-size: 200% 200%;
+            z-index: -1;
+            border-radius: 0 0 50% 50%;
+            transform: scaleX(1.5);
+            animation: gradientBG 12s ease infinite;
+        }
+        
+        .back-btn {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 2;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        h1 {
+            color: white;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease-out 0.2s forwards;
+        }
+        
+        .subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease-out 0.4s forwards;
+        }
+        
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .policy-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            padding: 2.5rem;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.05);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        .policy-card:nth-child(1) { animation-delay: 0.3s; }
+        .policy-card:nth-child(2) { animation-delay: 0.5s; }
+        
+        .policy-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            transition: var(--transition);
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .policy-card:hover .card-icon {
+            animation: pulse 1.5s infinite, float 4s ease-in-out infinite;
+        }
+        
+        h2 {
+            margin: 0;
+            font-size: 1.6rem;
+            color: var(--dark);
+        }
+        
+        h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-top: 1.8rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        h3:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.5em;
+            height: 0.5em;
+            width: 0.5em;
+            background: var(--primary);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        h3:hover:before {
+            transform: scale(1.3);
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+            color: var(--text);
+        }
+        
+        ul {
+            margin-bottom: 1.5rem;
+            padding-left: 0;
+        }
+        
+        li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            list-style-type: none;
+            padding-left: 1.8rem;
+            color: var(--text);
+            transition: var(--transition);
+        }
+        
+        li:hover {
+            transform: translateX(5px);
+        }
+        
+        li:before {
+            content: "✓";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            transition: var(--transition);
+        }
+        
+        li:hover:before {
+            transform: scale(1.3);
+        }
+        
+        .highlight {
+            background-color: rgba(67, 97, 238, 0.05);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+            transition: var(--transition);
+        }
+        
+        .highlight:hover {
+            transform: translateX(5px);
+            box-shadow: 5px 0 15px rgba(67, 97, 238, 0.1);
+        }
+        
+        .highlight strong {
+            color: var(--primary);
+        }
+        
+        .policy-link {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 0.9rem 1.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .policy-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+            animation: pulse 1.5s infinite;
+        }
+        
+        .policy-link i {
+            margin-right: 0.7rem;
+            transition: var(--transition);
+        }
+        
+        .policy-link:hover i {
+            transform: translateX(5px);
+        }
+        
+        .security-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .feature {
+            background: rgba(248, 249, 250, 0.8);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: var(--transition);
+            transform: scale(1);
+        }
+        
+        .feature:hover {
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-5px) scale(1.03);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+        
+        .feature:hover .feature-icon {
+            transform: scale(1.2);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .feature-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                padding-top: 1rem;
+            }
+            
+            .header-bg {
+                height: 200px;
+            }
+            
+            .policy-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .card-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="section">
-        <h2>Security & Privacy Policies (Online Parking for Disabled)</h2>
-
-        <div class="section">
-            <h3>Privacy Policy</h3>
-            <p>
-                We are committed to protecting your privacy. Our privacy policy is designed to be clear and easy to understand, outlining how we handle your personal information. It covers:
-            </p>
-            <ul>
-                <li><strong>Data Collection:</strong>
-                    <p>Specifically, we explain what data we collect, including:</p>
-                    <ul>
-                        <li>Account information (name, contact details).</li>
-                        <li>Disability verification documents (if required).</li>
-                        <li>Vehicle information (license plate, type).</li>
-                        <li>Location data (parking searches, parking sessions).</li>
-                        <li>Usage data (app activity, preferences).</li>
-                        <li>Information needed for payment processing.</li>
-                    </ul>
-                    <p>We emphasize that disability-related information is treated with the utmost sensitivity.</p>
-                </li>
-                <li><strong>Data Usage:</strong>
-                    <p>We detail how your data is used:</p>
-                    <ul>
-                        <li>To facilitate parking reservations and payments.</li>
-                        <li>To verify disability status for eligibility.</li>
-                        <li>To provide personalized parking recommendations.</li>
-                        <li>To improve app functionality and user experience.</li>
-                        <li>To communicate important updates and notifications.</li>
-                        <li>To prevent fraud.</li>
-                    </ul>
-                    <p>We assure users that their data will not be used for unauthorized purposes.</p>
-                </li>
-                <li><strong>Data Protection:</strong>
-                    <p>We explain the measures we take to secure your data:</p>
-                    <ul>
-                        <li>Encryption of sensitive data in transit and at rest.</li>
-                        <li>Secure server infrastructure with access controls.</li>
-                        <li>Regular security audits and vulnerability assessments.</li>
-                        <li>Data anonymization where possible.</li>
-                    </ul>
-                </li>
-                <li><strong>User Rights:</strong>
-                    <p>We outline your rights regarding your data:</p>
-                    <ul>
-                        <li>Right to access your data.</li>
-                        <li>Right to rectify inaccurate data.</li>
-                        <li>Right to erase your data (subject to legal obligations).</li>
-                        <li>Right to restrict data processing.</li>
-                        <li>Right to data portability.</li>
-                        <li>Right to object to data processing.</li>
-                        <li>How to exercise these rights.</li>
-                    </ul>
-                </li>
-            </ul>
-            <p>We provide a link to the full privacy policy for detailed information: <a href="privacy-policy.html" class="policy-link">Privacy Policy</a></p>
-        </div>
-
-        <div class="section">
-            <h3>Security Measures</h3>
-            <p>
-                We take the security of your data seriously. We implement robust security measures to protect your personal information from unauthorized access, use, or disclosure:
-            </p>
-            <ul>
-                <li><strong>Encryption:</strong> All sensitive data, including disability information and payment details, is encrypted using industry-standard encryption protocols.</li>
-                <li><strong>Access Controls:</strong> Access to user data is restricted to authorized personnel only, and access is logged and monitored.</li>
-                <li><strong>Secure Servers:</strong> Our servers are housed in secure data centers with physical and logical security measures in place.</li>
-                <li><strong>Regular Security Audits:</strong> We conduct regular security audits and penetration testing to identify and address potential vulnerabilities.</li>
-                <li><strong>Data Minimization:</strong> We only collect and retain the data necessary to provide our services.</li>
-                <li><strong>Disability Data Protection:</strong> Special protections are in place for disability related data.</li>
-                <li><strong>Payment Security:</strong> We utilize trusted third-party payment processors that are PCI DSS compliant.</li>
-            </ul>
-            <p>We continuously monitor and update our security measures to stay ahead of emerging threats.</p>
+    <div class="container">
+        <header>
+            <button class="back-btn" id="backButton">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="header-bg"></div>
+            <h1>Your Data Security Is Our Priority</h1>
+            <p class="subtitle">We go above and beyond to protect your personal information with military-grade security and transparent privacy practices.</p>
+        </header>
+        
+        <div class="policy-grid">
+            <div class="policy-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-user-lock"></i>
+                    </div>
+                    <h2>Privacy Protection</h2>
+                </div>
+                
+                <div class="highlight">
+                    <p><strong>Special care for sensitive data:</strong> Your disability-related information receives enhanced protections with strict access controls and additional security layers.</p>
+                </div>
+                
+                <h3>What We Collect</h3>
+                <p>Only what's essential to serve you better:</p>
+                <ul>
+                    <li>Basic account details (name, contact information)</li>
+                    <li>Disability verification documents (encrypted storage)</li>
+                    <li>Vehicle information for parking reservations</li>
+                    <li>Location data only during active parking sessions</li>
+                </ul>
+                
+                <h3>Your Rights</h3>
+                <ul>
+                    <li>Access and download your complete data profile</li>
+                    <li>Request corrections to inaccurate information</li>
+                    <li>Delete personal data when no longer needed</li>
+                    <li>Opt-out of non-essential data collection</li>
+                </ul>
+                
+                <a href="privacy-policy.html" class="policy-link" id="privacyLink">
+                    <i class="fas fa-file-alt"></i> Full Privacy Policy
+                </a>
+            </div>
+            
+            <div class="policy-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h2>Security Measures</h2>
+                </div>
+                
+                <div class="security-features">
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="feature-title">AES-256 Encryption</div>
+                        <div class="feature-desc">All data encrypted in transit and at rest</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-fingerprint"></i>
+                        </div>
+                        <div class="feature-title">Biometric Access</div>
+                        <div class="feature-desc">Multi-factor authentication protection</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="feature-title">Secure Servers</div>
+                        <div class="feature-desc">Geographically distributed data centers</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-eye-slash"></i>
+                        </div>
+                        <div class="feature-title">Anonymization</div>
+                        <div class="feature-desc">Data anonymized where possible</div>
+                    </div>
+                </div>
+                
+                <h3>Special Protections</h3>
+                <p>For your disability-related information:</p>
+                <ul>
+                    <li>Stored in isolated, high-security databases</li>
+                    <li>Additional encryption layer beyond standard data</li>
+                    <li>Access limited to essential personnel only</li>
+                    <li>Automatically redacted in all reports</li>
+                </ul>
+                
+                <div class="highlight">
+                    <p><strong>Transparency promise:</strong> We'll notify you within 24 hours of any incident affecting your data, with clear steps to protect yourself.</p>
+                </div>
+            </div>
         </div>
     </div>
 
+    <script>
+        // Back button functionality with ripple effect
+        document.getElementById('backButton').addEventListener('click', function(e) {
+            createRipple(e);
+            
+            // Add animation when going back
+            document.querySelector('h1').style.animation = 'fadeIn 0.4s reverse forwards';
+            document.querySelector('.subtitle').style.animation = 'fadeIn 0.4s reverse forwards';
+            document.querySelectorAll('.policy-card').forEach((card, index) => {
+                card.style.animation = `fadeIn 0.4s reverse forwards ${index * 0.1}s`;
+            });
+            
+            setTimeout(() => {
+                window.history.back();
+            }, 500);
+        });
+        
+        // Create ripple effect
+        function createRipple(event) {
+            const button = event.currentTarget;
+            const circle = document.createElement("span");
+            const diameter = Math.max(button.clientWidth, button.clientHeight);
+            const radius = diameter / 2;
+            
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
+            circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
+            circle.classList.add("ripple");
+            
+            const ripple = button.getElementsByClassName("ripple")[0];
+            if (ripple) ripple.remove();
+            
+            button.appendChild(circle);
+            
+            setTimeout(() => {
+                circle.remove();
+            }, 600);
+        }
+        
+        // Add ripple effect to policy link
+        document.getElementById('privacyLink').addEventListener('click', function(e) {
+            if (e.target === this) {
+                createRipple(e);
+            }
+        });
+        
+        // Animate features on scroll
+        const animateOnScroll = () => {
+            const features = document.querySelectorAll('.feature');
+            features.forEach((feature, index) => {
+                const featurePosition = feature.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (featurePosition < screenPosition) {
+                    feature.style.opacity = '1';
+                    feature.style.transform = 'translateY(0)';
+                    feature.style.transition = `all 0.5s ease-out ${index * 0.1}s`;
+                }
+            });
+        };
+        
+        // Initialize features as hidden
+        document.querySelectorAll('.feature').forEach(feature => {
+            feature.style.opacity = '0';
+            feature.style.transform = 'translateY(20px)';
+        });
+        
+        // Add scroll event listener
+        window.addEventListener('scroll', animateOnScroll);
+        // Trigger once on load in case elements are already visible
+        window.addEventListener('load', animateOnScroll);
+    </script>
 </body>
 </html>
