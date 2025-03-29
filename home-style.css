@@ -110,6 +110,9 @@
     top: 50%;
     right: -25px;
     transform: translateY(-50%);
-
-
+    font-size: 20px;
+    background-color: #4b5563;
+    border-radius: 50%;
+    color: var(--bg-light);
   }
+
