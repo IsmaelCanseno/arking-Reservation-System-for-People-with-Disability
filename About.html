@@ -10,17 +10,34 @@
             --primary: #1e37c4;
             --primary-blue: #2759c5;
             --primary-dark: #013193;
+            --primary-light: #e0f0ff;
             --accent: #3771c9;
             --light-blue: #e0f0ff;
             --border-color: #bfdbfe;
+            --dark: #1b263b;
             --light: #f8f9fa;
             --card-bg: #ffffff;
             --text: #2b2d42;
             --text-light: #8d99ae;
             --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --white: #ffffff;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 50px rgba(0,0,0,0.2);
+        }
+        
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
         }
         
         @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
@@ -47,6 +64,70 @@
             100% { background-position: 0% 50%; }
         }
         
+        /* Header Styles */
+        .app-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            position: sticky;
+            top: 0;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            min-height: 60px;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-title {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+            flex-grow: 1;
+            text-align: center;
+            background: linear-gradient(to right, #ffffff, #e0f0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .header-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .header-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.1);
+        }
+        
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
@@ -63,84 +144,60 @@
             padding: 2rem 1.5rem;
         }
         
-        header {
+        /* Page Header */
+        .page-header {
             text-align: center;
             margin-bottom: 3rem;
+            padding: 6rem 0 4rem;
             position: relative;
             overflow: hidden;
-            padding-top: 2rem;
         }
         
-        .header-bg {
+        .page-header::before {
+            content: "";
             position: absolute;
-            top: -50px;
+            top: 0;
             left: 0;
             right: 0;
-            height: 300px;
+            height: 100%;
             background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
             background-size: 200% 200%;
             z-index: -1;
-            border-radius: 0 0 50% 50%;
+            border-radius: 0 0 50% 50%/0 0 100% 100%;
             transform: scaleX(1.5);
             animation: gradientBG 12s ease infinite;
         }
-
-        .back-btn {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-            z-index: 2;
-        }
-        
-        .back-btn:hover {
-            background: rgba(255,255,255,0.3);
-            transform: translateY(-50%) scale(1.1);
-        }
         
         h1 {
-            color: white;
+            color: var(--white);
             font-size: 2.8rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             font-weight: 800;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
             opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.8s ease-out 0.2s forwards;
+            animation: fadeInUp 1s ease-out forwards;
         }
         
         .subtitle {
             color: rgba(255,255,255,0.9);
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             max-width: 700px;
             margin: 0 auto;
             opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.8s ease-out 0.4s forwards;
+            animation: fadeInUp 1s ease-out 0.2s both;
         }
         
+        /* Main Content Styles */
         section {
             background: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
             padding: 2.5rem;
             margin-bottom: 2rem;
             transition: var(--transition);
             border: 1px solid rgba(0,0,0,0.05);
             opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.6s ease-out forwards;
+            animation: fadeInUp 0.6s ease-out forwards;
         }
         
         .description { animation-delay: 0.3s; }
@@ -151,7 +208,7 @@
         
         section:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+            box-shadow: var(--shadow-xl);
         }
         
         h2 {
@@ -221,6 +278,7 @@
             transform: scale(1.3);
         }
         
+        /* Feature Cards */
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -234,12 +292,11 @@
             padding: 1.5rem;
             transition: var(--transition);
             border: 1px solid rgba(0,0,0,0.05);
-            transform: scale(1);
         }
         
         .feature-card:hover {
             background: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-lg);
             transform: translateY(-5px) scale(1.03);
         }
         
@@ -267,6 +324,7 @@
             color: var(--text-light);
         }
         
+        /* Team Section */
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -276,10 +334,10 @@
         
         .team-member {
             text-align: center;
-            background: rgba(255, 255, 255, 0.9);
+            background: var(--white);
             padding: 1.5rem;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: var(--shadow-md);
             transition: var(--transition);
             opacity: 0;
             transform: translateY(20px);
@@ -287,7 +345,7 @@
         
         .team-member:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            box-shadow: var(--shadow-lg);
         }
         
         .member-photo {
@@ -298,7 +356,7 @@
             border: 5px solid white;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             margin: 0 auto 1rem;
-            background: linear-gradient(135deg, #4361ee 0%, #3f37c9 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -330,12 +388,12 @@
         .member-name {
             font-weight: 700;
             margin-bottom: 0.3rem;
-            color: #1b263b;
+            color: var(--dark);
             font-size: 1.1rem;
         }
         
         .member-role {
-            color: #4361ee;
+            color: var(--primary);
             font-size: 0.9rem;
             margin-bottom: 1rem;
             font-weight: 500;
@@ -348,15 +406,16 @@
         }
         
         .member-social a {
-            color: #64748b;
+            color: var(--text-light);
             transition: var(--transition);
         }
         
         .member-social a:hover {
-            color: #4361ee;
+            color: var(--primary);
             transform: translateY(-3px);
         }
         
+        /* Legal Links */
         .legal-links {
             display: flex;
             gap: 1.5rem;
@@ -398,26 +457,31 @@
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.4);
             transform: scale(0);
-            animation: ripple 0.6s linear;
             pointer-events: none;
+            animation: ripple 0.6s linear;
         }
         
+        /* Responsive Styles */
         @media (max-width: 768px) {
             .container {
                 padding: 1.5rem;
             }
             
-            h1 {
-                font-size: 2rem;
-                padding-top: 1rem;
+            .page-header {
+                padding: 4rem 0 2rem;
             }
             
-            .header-bg {
-                height: 200px;
+            .page-header::before {
+                height: 100%;
+                border-radius: 0 0 30% 30%/0 0 50% 50%;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
             }
             
             section {
-                padding: 1.5rem;
+                padding: 2rem;
             }
             
             .team-grid {
@@ -431,29 +495,37 @@
         }
 
         @media (max-width: 480px) {
-            .team-grid {
-                grid-template-columns: 1fr;
+            h1 {
+                font-size: 1.8rem;
             }
             
-            .back-btn {
-                left: 10px;
-                width: 36px;
-                height: 36px;
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <button class="back-btn" id="backButton">
+    <header class="app-header">
+        <div class="header-content">
+            <button class="header-btn" id="backButton">
                 <i class="fas fa-arrow-left"></i>
             </button>
-            <div class="header-bg"></div>
-            <h1>About EZIO</h1>
-            <p class="subtitle">Revolutionizing accessible parking through innovative technology and compassionate design</p>
-        </header>
-        
+            <h1 class="header-title">About EZIO</h1>
+            <div></div> <!-- Empty div for spacing balance -->
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>Revolutionizing Accessible Parking</h1>
+        <p class="subtitle">Innovative technology and compassionate design for the disability community</p>
+    </div>
+
+    <div class="container">
         <section class="description">
             <h2>Our Mission</h2>
             <p>EZIO is transforming the accessible parking experience by connecting individuals with disabilities to available parking spaces in real-time. Our app eliminates the frustration of searching for suitable parking, empowering users with independence and peace of mind.</p>
@@ -542,7 +614,8 @@
                         <img src="Bacanto.jpg" alt="Rachel Aila F. Bacanto" onerror="this.onerror=null; this.className='member-photo-alt'; this.innerHTML='<i class=\'fas fa-user\'></i>';">
                     </div>
                     <div class="member-name">Rachel Aila F. Bacanto</div>
-                    <div class="member-role"></div>
+                    <div class="member-role">Lec: Tues 12:30 PM - 2:30 PM</div>
+                    <div class="member-role">Lab: Saturday 10:30 AM - 1:30 PM</div>
                     <div class="member-social">
                         <a href="#"><i class="fab fa-linkedin"></i></a>
                         <a href="#"><i class="fab fa-github"></i></a>
@@ -553,7 +626,8 @@
                         <img src="Canseno.jpg" alt="Ismael A. Canseno" onerror="this.onerror=null; this.className='member-photo-alt'; this.innerHTML='<i class=\'fas fa-user\'></i>';">
                     </div>
                     <div class="member-name">Ismael A. Canseno</div>
-                    <div class="member-role">UX Designer</div>
+                    <div class="member-role">Lec: Tues 12:30 PM - 2:30 PM</div>
+                    <div class="member-role">Lab: Saturday 10:30 AM - 1:30 PM</div>
                     <div class="member-social">
                         <a href="#"><i class="fab fa-linkedin"></i></a>
                         <a href="#"><i class="fab fa-github"></i></a>
@@ -564,7 +638,8 @@
                         <img src="Nacion.jpg" alt="Angel N. Nacion" onerror="this.onerror=null; this.className='member-photo-alt'; this.innerHTML='<i class=\'fas fa-user\'></i>';">
                     </div>
                     <div class="member-name">Angel N. Nacion</div>
-                    <div class="member-role">Backend Engineer</div>
+                    <div class="member-role">Lec: Sunday 8:00 AM - 10:00 AM</div>
+                    <div class="member-role">Lab: Sunday 10:30 AM - 1:00 PM</div>
                     <div class="member-social">
                         <a href="#"><i class="fab fa-linkedin"></i></a>
                         <a href="#"><i class="fab fa-github"></i></a>
@@ -575,7 +650,8 @@
                         <img src="tan.jpg" alt="Justin Emmanuel D. Tan" onerror="this.onerror=null; this.className='member-photo-alt'; this.innerHTML='<i class=\'fas fa-user\'></i>';">
                     </div>
                     <div class="member-name">Justin Emmanuel D. Tan</div>
-                    <div class="member-role">Project Manager</div>
+                    <div class="member-role">Lec: Sunday 8:00 AM - 10:00 AM</div>
+                    <div class="member-role">Lab: Sunday 10:30 AM - 1:00 PM</div>
                     <div class="member-social">
                         <a href="#"><i class="fab fa-linkedin"></i></a>
                         <a href="#"><i class="fab fa-github"></i></a>
@@ -599,50 +675,35 @@
         
         <section class="acknowledgments">
             <h2>Our Gratitude</h2>
-            <p>We extend our sincere appreciation to the accessibility consultants, user testers from the disability community, and open source contributors who helped make EZIO possible.</p>
-            <p>Special thanks to the developers of the open source libraries that power our application.</p>
+            <p>We extend our sincere appreciation to our Professor:</p>
+            <p>Dr. Leonard L. Alejandro</p>
         </section>
     </div>
 
     <script>
-        // Back button functionality with ripple effect
+        // Back button with ripple effect
         document.getElementById('backButton').addEventListener('click', function(e) {
-            createRipple(e);
+            // Create ripple effect
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
             
-            // Add animation when going back
-            document.querySelector('h1').style.animation = 'fadeIn 0.4s reverse forwards';
-            document.querySelector('.subtitle').style.animation = 'fadeIn 0.4s reverse forwards';
-            document.querySelectorAll('section').forEach((section, index) => {
-                section.style.animation = `fadeIn 0.4s reverse forwards ${index * 0.1}s`;
-            });
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            ripple.style.width = ripple.style.height = `${size}px`;
+            ripple.style.left = `${e.clientX - rect.left - size/2}px`;
+            ripple.style.top = `${e.clientY - rect.top - size/2}px`;
             
+            this.appendChild(ripple);
+            
+            // Remove ripple after animation
             setTimeout(() => {
-                window.history.back();
-            }, 500);
-        });
-        
-        // Create ripple effect
-        function createRipple(event) {
-            const button = event.currentTarget;
-            const circle = document.createElement("span");
-            const diameter = Math.max(button.clientWidth, button.clientHeight);
-            const radius = diameter / 2;
-            
-            circle.style.width = circle.style.height = `${diameter}px`;
-            circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
-            circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
-            circle.classList.add("ripple");
-            
-            const ripple = button.getElementsByClassName("ripple")[0];
-            if (ripple) ripple.remove();
-            
-            button.appendChild(circle);
-            
-            setTimeout(() => {
-                circle.remove();
+                ripple.remove();
             }, 600);
-        }
-        
+            
+            // Navigate back
+            window.history.back();
+        });
+
         // Animate team members on scroll
         const animateOnScroll = () => {
             const teamMembers = document.querySelectorAll('.team-member');
