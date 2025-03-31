@@ -159,7 +159,7 @@
             border-bottom: 1px solid rgba(0,0,0,0.1);
             touch-action: none;
         }
-        
+
         .drag-handle {
             width: 40px;
             height: 4px;
@@ -411,19 +411,22 @@
             width: calc(100% - 40px);
             max-width: 400px;
             margin: 20px;
-            transform: scale(0.95);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: var(--shadow-xl);
             position: relative;
             overflow: hidden;
+            opacity: 0;
         }
         
         .overlay.active .overlay-content {
-            transform: scale(1);
+            transform: translateY(0) scale(1);
+            opacity: 1;
         }
         
         .overlay.closing .overlay-content {
-            transform: scale(0.95);
+            transform: translateY(20px) scale(0.95);
+            opacity: 0;
         }
         
         .overlay-header {
@@ -447,6 +450,11 @@
             cursor: pointer;
             padding: 0.5rem;
             margin: -0.5rem;
+            transition: transform 0.2s ease;
+        }
+        
+        .close-btn:hover {
+            transform: rotate(90deg);
         }
         
         .menu-list {
@@ -465,6 +473,32 @@
             gap: 0.8rem;
             cursor: pointer;
             transition: var(--transition);
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+        
+        .overlay.active .menu-item {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .overlay.active .menu-item:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+        .overlay.active .menu-item:nth-child(2) {
+            transition-delay: 0.15s;
+        }
+        .overlay.active .menu-item:nth-child(3) {
+            transition-delay: 0.2s;
+        }
+        .overlay.active .menu-item:nth-child(4) {
+            transition-delay: 0.25s;
+        }
+        .overlay.active .menu-item:nth-child(5) {
+            transition-delay: 0.3s;
+        }
+        .overlay.active .menu-item:nth-child(6) {
+            transition-delay: 0.35s;
         }
         
         .menu-item:last-child {
@@ -486,6 +520,13 @@
             color: var(--primary);
             font-size: 1rem;
             flex-shrink: 0;
+            transition: var(--transition);
+        }
+        
+        .menu-item:hover .menu-icon {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
         }
         
         .menu-text {
@@ -507,6 +548,12 @@
         .menu-arrow {
             color: var(--text-light);
             font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .menu-item:hover .menu-arrow {
+            color: var(--primary);
+            transform: translateX(3px);
         }
         
         /* Current Location Button */
@@ -536,6 +583,7 @@
             color: var(--primary);
             font-size: 1.1rem;
         }
+
         
         /* Animations */
         @keyframes fadeIn {
@@ -548,6 +596,34 @@
             to { transform: scale(1); opacity: 1; }
         }
         
+        @keyframes slideInFromLeft {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from {
+                transform: translateX(-50%) translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(-50%) translateY(20px);
+                opacity: 0;
+            }
+       
+        }
+
         /* Responsive Styles */
         @media (max-width: 480px) {
             .bottom-sheet {
@@ -792,7 +868,8 @@
                 </a>
             </ul>
         </div>
-    </div>
+         
+
     
     <!-- Leaflet JS for Maps -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -1032,7 +1109,9 @@
         } else {
             // Use default location if geolocation not supported
             map.setView(defaultCoords, 16);
+            
         }
+       
     </script>
 </body>
 </html>
