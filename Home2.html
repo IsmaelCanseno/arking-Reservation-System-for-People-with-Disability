@@ -189,8 +189,8 @@
         }
         
         .search-input {
-            width: 80%;
-            padding: 0.8rem 0.2rem 0.8rem 2.8rem;
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 2.8rem;
             border-radius: 12px;
             border: 1px solid var(--border-color);
             font-size: 0.95rem;
@@ -206,17 +206,12 @@
         }
         
         .search-icon {
-            position: flex;
-            margin-left: 20px;
-            color: var(--light);
-            border: var(--primary);
-            border-style: solid;
-            border-width: 9px;
-            border-radius: 40%;
-            background: var(--primary)
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
         }
-
-
         
         /* Menu Options */
         .menu-options {
@@ -783,12 +778,9 @@
         
         <div class="sheet-content">
             <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
                 <input type="text" class="search-input" placeholder="Search for accessible parking...">
-                <a href="Home2.html">
-                    <i class="fas fa-search search-icon"></i>
-                </a>
             </div>
-            
             
             <div class="menu-options">
                 
@@ -810,7 +802,59 @@
                 </div>
             </div>
             
-            
+            <div class="parking-section">
+                <div class="section-title">
+                    Nearby Accessible Parking
+                    <a href="#" class="view-all">View all</a>
+                </div>
+                
+                <div class="parking-list">
+                    <div class="parking-card">
+                        <div class="parking-name">Sogo Hotel Buendia Parking</div>
+                        <div class="parking-location">
+                            <i class="fas fa-map-marker-alt"></i> 65m away
+                        </div>
+                        
+                        <div class="parking-availability">
+                            <div>
+                                <div class="availability-label">Available spots</div>
+                                <div class="availability-count">4/8</div>
+                            </div>
+                            <button class="book-btn">View</button>
+                        </div>
+                    </div>
+                    
+                    <div class="parking-card">
+                        <div class="parking-name">Megaworld Multilevel Parking</div>
+                        <div class="parking-location">
+                            <i class="fas fa-map-marker-alt"></i> 270m away
+                        </div>
+                        
+                        <div class="parking-availability">
+                            <div>
+                                <div class="availability-label">Available spots</div>
+                                <div class="availability-count">3/5</div>
+                            </div>
+                            <button class="book-btn">View</button>
+                        </div>
+                    </div>
+                    
+                    <div class="parking-card">
+                        <div class="parking-name">Martinez Mdse Open Parking</div>
+                        <div class="parking-location">
+                            <i class="fas fa-map-marker-alt"></i> 280m away
+                        </div>
+                        
+                        <div class="parking-availability">
+                            <div>
+                                <div class="availability-label">Available spots</div>
+                                <div class="availability-count">2/6</div>
+                            </div>
+                            <button class="book-btn">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -966,10 +1010,42 @@
         }).addTo(map);
         
         // Add marker for Arellano University
+        const arellanoMarker = L.marker(defaultCoords, {
+            icon: L.divIcon({
+                html: '<i class="fas fa-university" style="color: #1e37c4; font-size: 24px; background: white; border-radius: 50%; padding: 8px;"></i>',
+                className: 'leaflet-university-icon',
+                iconSize: [40, 40],
+                iconAnchor: [20, 40]
+            })
+        }).addTo(map);
+        arellanoMarker.bindPopup("<b>Arellano University</b><br>Jose Abad Santos Campus, Pasay");
         
         // Add some sample markers for accessible parking
         const parkingSpots = [
-            
+            {
+                name: "Sogo Hotel Buendia Parking",
+                coords: [14.553151419475064, 120.99724360887663],
+                available: 4,
+                total: 8,
+                distance: "65 meters",
+                address: "Taft Ave N, Pasay"
+            },
+            {
+                name: "Megaworld Multilevel Parking",
+                coords: [14.55347, 120.9962],
+                available: 3,
+                total: 5,
+                distance: "270 meters",
+                address: "Gil Puyat East Bound, Pasay"
+            },
+            {
+                name: "Martinez Mdse Open Parking",
+                coords: [14.554125784038188, 120.99836541755201],
+                available: 2,
+                total: 6,
+                distance: "280 meters",
+                address: "Gil Puyat East bound, Pasay"
+            }
         ];
         
         // Custom accessible parking icon
