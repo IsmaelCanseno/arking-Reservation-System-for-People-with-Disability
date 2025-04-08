@@ -6,6 +6,7 @@
     <title>Settings</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Light mode variables */
         :root {
             --primary: #1e37c4;
             --primary-blue: #2759c5;
@@ -13,7 +14,7 @@
             --accent: #3771c9;
             --text: #2b2d42;
             --text-light: #6c757d;
-            --bg: #f8f9fa;
+            --bg: #aed5ff;
             --card-bg: #ffffff;
             --border: #e9ecef;
             --radius: 16px;
@@ -21,6 +22,24 @@
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             --content-box-bg: rgba(255, 255, 255, 0.9);
             --content-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --body-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        /* Dark mode variables */
+        [data-theme="dark"] {
+            --primary: #4d6bc6;
+            --primary-blue: #5a7fd4;
+            --primary-dark: #3a5bb7;
+            --accent: #6b8bd9;
+            --text: #e9ecef;
+            --text-light: #adb5bd;
+            --bg: #001f3f;
+            --card-bg: #2b3035;
+            --border: #495057;
+            --shadow: 0 8px 24px rgba(0,0,0,0.3);
+            --content-box-bg: rgba(43, 48, 53, 0.9);
+            --content-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            --body-bg: linear-gradient(135deg, #212529 0%, #343a40 100%);
         }
 
         * {
@@ -35,8 +54,9 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: var(--body-bg);
             padding: 20px;
+            transition: background 0.5s ease;
         }
 
         .settings-card {
@@ -49,6 +69,7 @@
             transform: translateY(20px);
             opacity: 0;
             animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
         }
 
         @keyframes fadeInUp {
@@ -118,6 +139,7 @@
             padding: 20px;
             margin-bottom: 20px;
             box-shadow: var(--content-box-shadow);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
         }
 
         .section-title {
@@ -127,6 +149,7 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin: 0 0 12px 4px;
+            transition: color 0.3s ease;
         }
 
         .menu-item {
@@ -139,6 +162,7 @@
             transition: var(--transition);
             position: relative;
             overflow: hidden;
+            background-color: var(--content-box-bg);
         }
 
         .menu-item::before {
@@ -153,7 +177,7 @@
         }
 
         .menu-item:hover {
-            background-color: var(--primary-light);
+            background-color: rgba(67, 97, 238, 0.1);
             transform: translateX(8px);
         }
 
@@ -170,6 +194,41 @@
             align-items: center;
             justify-content: center;
             font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .theme-toggle-icon {
+            position: relative;
+            width: 24px;
+            height: 24px;
+            margin-right: 14px;
+        }
+
+        .theme-toggle-icon i {
+            position: absolute;
+            transition: var(--transition);
+        }
+
+        .theme-toggle-icon .fa-sun {
+            color: #FFD43B;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .theme-toggle-icon .fa-moon {
+            color: #f8f9fa;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        [data-theme="dark"] .theme-toggle-icon .fa-sun {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        [data-theme="dark"] .theme-toggle-icon .fa-moon {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .menu-text {
@@ -178,6 +237,7 @@
             flex: 1;
             text-align: left;
             color: var(--text);
+            transition: color 0.3s ease;
         }
 
         .menu-item::after {
@@ -247,11 +307,12 @@
         <div class="settings-content">
             <div class="content-box">
                 <div class="section-title">Appearance</div>
-                <div class="menu-item ripple" onclick="window.location.href='Map-Display.html'">
-                    <div class="menu-icon">
-                        <i class="fas fa-map"></i>
+                <div class="menu-item ripple" id="theme-toggle">
+                    <div class="theme-toggle-icon">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
                     </div>
-                    <div class="menu-text">Map Display</div>
+                    <div class="menu-text">Theme Switch</div>
                 </div>
             </div>
             
@@ -302,6 +363,49 @@
     </div>
 
     <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        
+        // Check for saved theme preference or system preference
+        function initializeTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme) {
+                htmlElement.setAttribute('data-theme', savedTheme);
+            } else if (systemPrefersDark) {
+                htmlElement.setAttribute('data-theme', 'dark');
+            } else {
+                htmlElement.setAttribute('data-theme', 'light');
+            }
+        }
+        
+        // Toggle between light and dark mode
+        function toggleTheme() {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Dispatch event in case other parts of the app need to know
+            document.dispatchEvent(new CustomEvent('themeChanged', { detail: newTheme }));
+        }
+        
+        // Initialize theme on load
+        initializeTheme();
+        
+        // Set up event listener for theme toggle
+        themeToggle.addEventListener('click', toggleTheme);
+        
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (!localStorage.getItem('theme')) { // Only change if no manual preference set
+                htmlElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+            }
+        });
+
         // Close button functionality
         document.querySelector('.close-btn').addEventListener('click', function() {
             document.querySelector('.settings-card').style.animation = 'fadeInUp 0.4s reverse forwards';
