@@ -320,26 +320,39 @@
                 updateThemeIcon(newTheme);
             }
         });
-
+    
         // Form submission handler
         document.getElementById("login-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            // Get form values
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            
+            // Here you would typically validate the credentials or send to server
+            // For this example, we'll just check they're not empty
+            if (username.trim() === "" || password.trim() === "") {
+                alert("Please enter both username and password");
+                return;
+            }
+            
+            // Add fade out animation before redirect
+            document.querySelector('.login-outer-container').style.animation = 'fadeOut 0.5s ease-out forwards';
+            setTimeout(() => {
+                window.location.href = "Home.html"; // Redirect to home page after login
+            }, 500);
+        });
+    
+        // Register button handler
+        document.getElementById("register-button").addEventListener("click", function(event) {
             event.preventDefault();
             // Add fade out animation before redirect
             document.querySelector('.login-outer-container').style.animation = 'fadeOut 0.5s ease-out forwards';
             setTimeout(() => {
-                window.location.href = "Home.html";
+                window.location.href = "Register.html"; // Redirect to register page
             }, 500);
         });
-
-        // Register button handler
-        document.getElementById("register-button").addEventListener("click", function() {
-            // Add fade out animation before redirect
-            document.querySelector('.login-outer-container').style.animation = 'fadeOut 0.5s ease-out forwards';
-            setTimeout(() => {
-                window.location.href = "Register.html";
-            }, 500);
-        });
-
+    
         // Add fade out animation
         const style = document.createElement('style');
         style.innerHTML = `
@@ -356,5 +369,3 @@
         `;
         document.head.appendChild(style);
     </script>
-</body>
-</html>
