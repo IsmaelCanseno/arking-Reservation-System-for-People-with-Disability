@@ -261,7 +261,7 @@
             <div class="divider">or</div>
             
             <div class="login-link">
-                <a href="Log-In.html">
+                <a href="index.php">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
                         <polyline points="10 17 15 12 10 7"></polyline>
@@ -295,12 +295,7 @@
             this.textContent = type === 'password' ? '👁️' : '🔒';
         });
 
-        // Form submission
-        document.getElementById('register-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Add form validation here if needed
-            window.location.href = this.getAttribute('action');
-        });
+        
     </script>
 </body>
 </html>

@@ -238,8 +238,8 @@
 
                 <h2>Log In</h2>
                 <form id="login-form" method="post" action="reg.php">
-                    <label for="username">Username / Name</label>
-                    <input type="text" id="username" name="username" required>
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email" required>
 
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" required>
@@ -325,21 +325,14 @@
         });
 
         // Form submission handler
-        document.getElementById("login-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            // Add fade out animation before redirect
-            document.querySelector('.login-outer-container').style.animation = 'fadeOut 0.5s ease-out forwards';
-            setTimeout(() => {
-                window.location.href = "Home.html";
-            }, 500);
-        });
+       
 
         // Register button handler
         document.getElementById("register-button").addEventListener("click", function() {
             // Add fade out animation before redirect
             document.querySelector('.login-outer-container').style.animation = 'fadeOut 0.5s ease-out forwards';
             setTimeout(() => {
-                window.location.href = "Register.html";
+                window.location.href = "Register.php";
             }, 500);
         });
 
